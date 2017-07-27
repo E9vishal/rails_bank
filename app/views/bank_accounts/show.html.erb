@@ -1,6 +1,7 @@
 <h1>Account Number: <%= @bank_account.account_number %></h1>
-<small><%=@bank_account.client %></small>
+<small><%=@bank_account.client %></small><br/>
 
+<%= button_tag :new_transaction,  id: "btn-new-transaction", class: "btn btn-primary" %>
 
 <table class = "table table-bordered">
   <thead>
@@ -26,3 +27,40 @@
     </tr>
   </tbody>
 </table>
+
+<div class="modal fade modal-fade", id: "modal-transaction">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        </button>
+        <h4 class="modal-title"> New Transaction </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row"></div>
+        <div class="col-md-6"></div>
+        <label>Amount</label>
+        <%= text_field_tag :amount,0.00, id: "input-amount", class: "form-control" %>
+        <div class="col-md-6"></div>
+        <label>Transaction_type</label>
+        <%=select_tag :transaction_type, options_for_select(AccountTransaction::TRANSACTION_TYPES), id: "select-transaction-type", class: "form-control"%>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button<div id="btn-save"></div> class="btn btn-primary" {type="button">} Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<%= javascript_include_tag "bank_accounts/show" %>
+<script>
+$(document).ready(function(){
+  show.init();
+});
+</script>
